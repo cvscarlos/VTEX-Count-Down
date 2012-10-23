@@ -15,16 +15,17 @@ jQuery.fn.vtexCountdown=function(opts)
 {
     var defaults=
 	{
-		element:"p[class*=|]",
-		separator:"|",
-		dateSeparator:"/",
-		hourSeparator:":",
-		outputFormat:1, // [1] Dias, hrs, min., seg. - [2] hrs, min., seg.
+		element:"p[class*=|]", // Elemento em que esta a promoção. Normalmente o sistema gera um "<p>"
+		separator:"|", // Caracter que separa o nome da promoção de sua data limite no título
+		dateSeparator:"/", // Separador de data, usado entre o número de dias, mês e ano
+		hourSeparator:":", // Separador de horas
+		outputFormat:1, // [1] Dias, hrs, min., seg. - [2] hrs, min., seg. // Modelo de impressão do contador
+		// HTML onde será montado o contador
 		htmlFormat:'<span class="hours">%hours% <span class="vtex-cd_p">horas</span><span class="vtex-cd_s">hora</span> </span><span class="minutes">%minutes% <span class="vtex-cd_p">minutos</span><span class="vtex-cd_s">minuto</span> </span><span class="seconds">%seconds% <span class="vtex-cd_p">segundos</span><span class="vtex-cd_s">segundo</span> </span>',
-		updatInterval:1000,
-		callback:function(){},
-		updateCallback:function(){},
-		removeDateText:true
+		updatInterval:1000, // Intervalo de atualização do contador na tela em milesegundos. 1000 milisegundos = 1 segundo
+		callback:function(){}, // Callback após renderizar o contador.
+		updateCallback:function(){}, // Callback após cada atualização
+		removeDateText:true // Se "true" irá remover a data do nome da promoção, exibindo ao usuário apenas o título dela
 	};
     var options=jQuery.extend(defaults, opts);
 	var $this=$(this);
