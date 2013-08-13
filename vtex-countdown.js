@@ -1,204 +1,202 @@
-/**
-* Countdown.js < http://countdownjs.org/ >
-* @license MIT
-*/
-var module,countdown=function(l){function m(a,b){var c=a.getTime();a.setUTCMonth(a.getUTCMonth()+b);return o((a.getTime()-c)/864E5)}function g(a,b,c){return a+" "+(a===1?b:c)}function i(){}function n(a,b,c,e){a.start=b;a.end=c;a.units=e;a.value=c.getTime()-b.getTime();if(a.value<0)var d=c,c=b,b=d;a.refMonth=new Date(b.getFullYear(),b.getMonth(),15);try{a.millennia=0;a.centuries=0;a.decades=0;a.years=c.getUTCFullYear()-b.getUTCFullYear();a.months=c.getUTCMonth()-b.getUTCMonth();a.weeks=0;a.days=c.getUTCDate()- b.getUTCDate();a.hours=c.getUTCHours()-b.getUTCHours();a.minutes=c.getUTCMinutes()-b.getUTCMinutes();a.seconds=c.getUTCSeconds()-b.getUTCSeconds();a.milliseconds=c.getUTCMilliseconds()-b.getUTCMilliseconds();var f;a.milliseconds<0?(f=j(-a.milliseconds/1E3),a.seconds-=f,a.milliseconds+=f*1E3):a.milliseconds>=1E3&&(a.seconds+=h(a.milliseconds/1E3),a.milliseconds%=1E3);a.seconds<0?(f=j(-a.seconds/60),a.minutes-=f,a.seconds+=f*60):a.seconds>=60&&(a.minutes+=h(a.seconds/60),a.seconds%=60);a.minutes<0? (f=j(-a.minutes/60),a.hours-=f,a.minutes+=f*60):a.minutes>=60&&(a.hours+=h(a.minutes/60),a.minutes%=60);a.hours<0?(f=j(-a.hours/24),a.days-=f,a.hours+=f*24):a.hours>=24&&(a.days+=h(a.hours/24),a.hours%=24);a.days<0&&(f=j(-a.days/28),a.months-=f,a.days+=m(a.refMonth,f));a.days>=7&&(a.weeks+=h(a.days/7),a.days%=7);a.months<0?(f=j(-a.months/12),a.years-=f,a.months+=f*12):a.months>=12&&(a.years+=h(a.months/12),a.months%=12);a.years>=10&&(a.decades+=h(a.years/10),a.years%=10,a.decades>=10&&(a.centuries+= h(a.decades/10),a.decades%=10,a.centuries>=10&&(a.millennia+=h(a.centuries/10),a.centuries%=10)));e&1024||(a.centuries+=a.millennia*10,delete a.millennia);e&512||(a.decades+=a.centuries*10,delete a.centuries);e&256||(a.years+=a.decades*10,delete a.decades);e&128||(a.months+=a.years*12,delete a.years);!(e&64)&&a.months&&(a.days+=m(a.refMonth,a.months),delete a.months,a.days>=7&&(a.weeks+=h(a.days/7),a.days%=7));e&32||(a.days+=a.weeks*7,delete a.weeks);e&16||(a.hours+=a.days*24,delete a.days);e&8|| (a.minutes+=a.hours*60,delete a.hours);e&4||(a.seconds+=a.minutes*60,delete a.minutes);e&2||(a.milliseconds+=a.seconds*1E3,delete a.seconds);e&1||delete a.milliseconds}finally{delete a.refMonth}return a}function d(a,b,c){var e,c=c||222;"function"===typeof a?(e=a,a=null):a instanceof Date||(a=a!==null&&isFinite(a)?new Date(a):null);"function"===typeof b?(e=b,b=null):b instanceof Date||(b=b!==null&&isFinite(b)?new Date(b):null);if(!a&&!b)return new i;if(!e)return n(new i,a||new Date,b||new Date,c); var d;d=c&1?1E3/30:c&2?1E3:c&4?6E4:c&8?36E5:c&16?864E5:6048E5;var f=function(){e(n(new i,a||new Date,b||new Date,c))};f();return setInterval(f,d)}var j=Math.ceil,h=Math.floor,o=Math.round,k;i.prototype.toString=function(a){var b=k(this);b.length>a&&(b=b.slice(0,a));a=b.length;if(!a)return"";a>1&&(b[a-1]="and "+b[a-1]);return b.join(", ")};i.prototype.toHTML=function(a,b){var a=a||"span",c=k(this);c.length>b&&(c=c.slice(0,b));var e=c.length;if(!e)return"";for(var d=0;d<e;d++)c[d]="<"+a+">"+c[d]+"</"+ a+">";--e&&(c[e]="and "+c[e]);return c.join(", ")};i.prototype.toShort=function(a){var b=k(this),a=a>0?a:1;b.length>a&&(b=b.slice(0,a));a=b.length;if(!a)return"";a>1&&(b[a-1]="and "+b[a-1]);return b.join(", ")};k=function(a){var b=[];a.millennia&&b.push(g(a.millennia,"millennium","millennia"));a.centuries&&b.push(g(a.centuries,"century","centuries"));a.decades&&b.push(g(a.decades,"decade","decades"));a.years&&b.push(g(a.years,"year","years"));a.months&&b.push(g(a.months,"month","months"));a.weeks&& b.push(g(a.weeks,"week","weeks"));a.days&&b.push(g(a.days,"day","days"));a.hours&&b.push(g(a.hours,"hour","hours"));a.minutes&&b.push(g(a.minutes,"minute","minutes"));a.seconds&&b.push(g(a.seconds,"second","seconds"));a.milliseconds&&b.push(g(a.milliseconds,"millisecond","milliseconds"));return b};d.MILLISECONDS=1;d.SECONDS=2;d.MINUTES=4;d.HOURS=8;d.DAYS=16;d.WEEKS=32;d.MONTHS=64;d.YEARS=128;d.DECADES=256;d.CENTURIES=512;d.MILLENNIA=1024;d.DEFAULTS=222;d.ALL=2047;if(l&&l.exports)l.exports=d;return d}(module);
+/* Countdown.js < http://countdownjs.org/ > // 2.3.3 // MIT */
+var module,countdown=function(r){function v(a,b){var c=a.getTime();a.setUTCMonth(a.getUTCMonth()+b);return Math.round((a.getTime()-c)/864E5)}function t(a){var b=a.getTime(),c=new Date(b);c.setUTCMonth(a.getUTCMonth()+1);return Math.round((c.getTime()-b)/864E5)}function h(a,b){return a+" "+(1===a?p[b]:q[b])}function n(){}function l(a,b,c,g,f,d){0<=a[c]&&(b+=a[c],delete a[c]);b/=f;if(1>=b+1)return 0;if(0<=a[g]){a[g]=+(a[g]+b).toFixed(d);switch(g){case "seconds":if(60!==a.seconds||isNaN(a.minutes))break; a.minutes++;a.seconds=0;case "minutes":if(60!==a.minutes||isNaN(a.hours))break;a.hours++;a.minutes=0;case "hours":if(24!==a.hours||isNaN(a.days))break;a.days++;a.hours=0;case "days":if(7!==a.days||isNaN(a.weeks))break;a.weeks++;a.days=0;case "weeks":if(a.weeks!==t(a.refMonth)/7||isNaN(a.months))break;a.months++;a.weeks=0;case "months":if(12!==a.months||isNaN(a.years))break;a.years++;a.months=0;case "years":if(10!==a.years||isNaN(a.decades))break;a.decades++;a.years=0;case "decades":if(10!==a.decades|| isNaN(a.centuries))break;a.centuries++;a.decades=0;case "centuries":if(10!==a.centuries||isNaN(a.millennia))break;a.millennia++;a.centuries=0}return 0}return b}function w(a,b,c,g,f,d){a.start=b;a.end=c;a.units=g;a.value=c.getTime()-b.getTime();if(0>a.value){var h=c;c=b;b=h}a.refMonth=new Date(b.getFullYear(),b.getMonth(),15);try{a.millennia=0;a.centuries=0;a.decades=0;a.years=c.getUTCFullYear()-b.getUTCFullYear();a.months=c.getUTCMonth()-b.getUTCMonth();a.weeks=0;a.days=c.getUTCDate()-b.getUTCDate(); a.hours=c.getUTCHours()-b.getUTCHours();a.minutes=c.getUTCMinutes()-b.getUTCMinutes();a.seconds=c.getUTCSeconds()-b.getUTCSeconds();a.milliseconds=c.getUTCMilliseconds()-b.getUTCMilliseconds();var k;0>a.milliseconds?(k=s(-a.milliseconds/1E3),a.seconds-=k,a.milliseconds+=1E3*k):1E3<=a.milliseconds&&(a.seconds+=m(a.milliseconds/1E3),a.milliseconds%=1E3);0>a.seconds?(k=s(-a.seconds/60),a.minutes-=k,a.seconds+=60*k):60<=a.seconds&&(a.minutes+=m(a.seconds/60),a.seconds%=60);0>a.minutes?(k=s(-a.minutes/ 60),a.hours-=k,a.minutes+=60*k):60<=a.minutes&&(a.hours+=m(a.minutes/60),a.minutes%=60);0>a.hours?(k=s(-a.hours/24),a.days-=k,a.hours+=24*k):24<=a.hours&&(a.days+=m(a.hours/24),a.hours%=24);for(;0>a.days;)a.months--,a.days+=v(a.refMonth,1);7<=a.days&&(a.weeks+=m(a.days/7),a.days%=7);0>a.months?(k=s(-a.months/12),a.years-=k,a.months+=12*k):12<=a.months&&(a.years+=m(a.months/12),a.months%=12);10<=a.years&&(a.decades+=m(a.years/10),a.years%=10,10<=a.decades&&(a.centuries+=m(a.decades/10),a.decades%= 10,10<=a.centuries&&(a.millennia+=m(a.centuries/10),a.centuries%=10)));b=0;!(g&1024)||b>=f?(a.centuries+=10*a.millennia,delete a.millennia):a.millennia&&b++;!(g&512)||b>=f?(a.decades+=10*a.centuries,delete a.centuries):a.centuries&&b++;!(g&256)||b>=f?(a.years+=10*a.decades,delete a.decades):a.decades&&b++;!(g&128)||b>=f?(a.months+=12*a.years,delete a.years):a.years&&b++;!(g&64)||b>=f?(a.months&&(a.days+=v(a.refMonth,a.months)),delete a.months,7<=a.days&&(a.weeks+=m(a.days/7),a.days%=7)):a.months&& b++;!(g&32)||b>=f?(a.days+=7*a.weeks,delete a.weeks):a.weeks&&b++;!(g&16)||b>=f?(a.hours+=24*a.days,delete a.days):a.days&&b++;!(g&8)||b>=f?(a.minutes+=60*a.hours,delete a.hours):a.hours&&b++;!(g&4)||b>=f?(a.seconds+=60*a.minutes,delete a.minutes):a.minutes&&b++;!(g&2)||b>=f?(a.milliseconds+=1E3*a.seconds,delete a.seconds):a.seconds&&b++;if(!(g&1)||b>=f){var e=l(a,0,"milliseconds","seconds",1E3,d);if(e&&(e=l(a,e,"seconds","minutes",60,d))&&(e=l(a,e,"minutes","hours",60,d))&&(e=l(a,e,"hours","days", 24,d))&&(e=l(a,e,"days","weeks",7,d))&&(e=l(a,e,"weeks","months",t(a.refMonth)/7,d))){g=e;var n,p=a.refMonth,q=p.getTime(),r=new Date(q);r.setUTCFullYear(p.getUTCFullYear()+1);n=Math.round((r.getTime()-q)/864E5);if(e=l(a,g,"months","years",n/t(a.refMonth),d))if(e=l(a,e,"years","decades",10,d))if(e=l(a,e,"decades","centuries",10,d))if(e=l(a,e,"centuries","millennia",10,d))throw Error("Fractional unit overflow");}}}finally{delete a.refMonth}return a}function d(a,b,c,d,f){var h;c=+c||222;d=0<d?d:NaN; f=0<f?20>f?Math.round(f):20:0;"function"===typeof a?(h=a,a=null):a instanceof Date||(a=null!==a&&isFinite(a)?new Date(a):null);"function"===typeof b?(h=b,b=null):b instanceof Date||(b=null!==b&&isFinite(b)?new Date(b):null);if(!a&&!b)return new n;if(!h)return w(new n,a||new Date,b||new Date,c,d,f);var l=c&1?1E3/30:c&2?1E3:c&4?6E4:c&8?36E5:c&16?864E5:6048E5,k,e=function(){h(w(new n,a||new Date,b||new Date,c,d,f),k)};e();return k=setInterval(e,l)}var s=Math.ceil,m=Math.floor,p,q,u;n.prototype.toString= function(){var a=u(this),b=a.length;if(!b)return"";1<b&&(a[b-1]="and "+a[b-1]);return a.join(", ")};n.prototype.toHTML=function(a){a=a||"span";var b=u(this),c=b.length;if(!c)return"";for(var d=0;d<c;d++)b[d]="\x3c"+a+"\x3e"+b[d]+"\x3c/"+a+"\x3e";--c&&(b[c]="and "+b[c]);return b.join(", ")};u=function(a){var b=[],c=a.millennia;c&&b.push(h(c,10));(c=a.centuries)&&b.push(h(c,9));(c=a.decades)&&b.push(h(c,8));(c=a.years)&&b.push(h(c,7));(c=a.months)&&b.push(h(c,6));(c=a.weeks)&&b.push(h(c,5));(c=a.days)&& b.push(h(c,4));(c=a.hours)&&b.push(h(c,3));(c=a.minutes)&&b.push(h(c,2));(c=a.seconds)&&b.push(h(c,1));(c=a.milliseconds)&&b.push(h(c,0));return b};d.MILLISECONDS=1;d.SECONDS=2;d.MINUTES=4;d.HOURS=8;d.DAYS=16;d.WEEKS=32;d.MONTHS=64;d.YEARS=128;d.DECADES=256;d.CENTURIES=512;d.MILLENNIA=1024;d.DEFAULTS=222;d.ALL=2047;d.setLabels=function(a,b){a=a||[];a.split&&(a=a.split("|"));b=b||[];b.split&&(b=b.split("|"));for(var c=0;10>=c;c++)p[c]=a[c]||p[c],q[c]=b[c]||q[c]};(d.resetLabels=function(){p="millisecond second minute hour day week month year decade century millennium".split(" "); q="milliseconds seconds minutes hours days weeks months years decades centuries millennia".split(" ")})();r&&r.exports&&(r.exports=d);return d}(module);
 
-/**
-* Vtex CountDown
-* @author Carlos Vinicius
-* @version 1.1
-* @date 2011-02-28
-*/
+/* Vtex CountDown // 1.2 // Carlos Vincius [Quatro Digital] // MIT */
 if("function"!==typeof(String.prototype.trim))String.prototype.trim=function(){return this.replace(/^\s+|\s+$/g,"");};
-jQuery.fn.vtexCountdown=function(opts)
-{
-    var defaults=
-	{
-		element:"p[class*=|]", // Elemento em que esta a promoção. Normalmente o sistema gera um "<p>"
-		separator:"|", // Caracter que separa o nome da promoção de sua data limite no título
-		dateSeparator:"/", // Separador de data, usado entre o número de dias, mês e ano
-		hourSeparator:":", // Separador de horas
-		outputFormat:1, // [1] Dias, hrs, min., seg. - [2] hrs, min., seg. // Modelo de impressão do contador
-		// HTML onde será montado o contador
-		htmlFormat:'<span class="hours">%hours% <span class="vtex-cd_p">horas</span><span class="vtex-cd_s">hora</span> </span><span class="minutes">%minutes% <span class="vtex-cd_p">minutos</span><span class="vtex-cd_s">minuto</span> </span><span class="seconds">%seconds% <span class="vtex-cd_p">segundos</span><span class="vtex-cd_s">segundo</span> </span>',
-		updatInterval:1000, // Intervalo de atualização do contador na tela em milesegundos. 1000 milisegundos = 1 segundo
-		callback:function(){}, // Callback após renderizar o contador.
-		updateCallback:function(){}, // Callback após cada atualização
-		removeDateText:true // Se "true" irá remover a data do nome da promoção, exibindo ao usuário apenas o título dela
-	};
-    var options=jQuery.extend(defaults, opts);
-	var $this=$(this);
-	var elem=jQuery(options.element).first();
-	var _console="object"==typeof(console);
-	
-	// Reporting Errors
-	if(elem.length<1){if(_console) console.log("[Erro] Elemento com o nome da promoção não encontrado \n ("+elem.selector+")"); return $this;}
+(function($){
+	"use strict";
 
-	var promoText=elem.text()||"";
-	// Reporting Errors
-	if(promoText.indexOf(options.separator)<0){if(_console) console.log("[Erro] Separador “"+options.separator+"” não encontrado."); return $this;}
-	
-	// Get Date / Hour
-	var promoDateText=promoText.split(options.separator).pop().trim();
-	var promoTimeStamp=promoDateText.split(" ");
-	var promoDate=(promoTimeStamp[0]||"").split(options.dateSeparator);
-	var promoHour=(promoTimeStamp[1]||"").split(options.hourSeparator);
-	var finalDate=new Date(promoDate[2],(promoDate[1]-1),promoDate[0],promoHour[0],promoHour[1]);
-	// Reporting Errors
-	if(promoDate.length<3 || promoHour.length<2 || isNaN(finalDate.getTime())){if(_console) console.log("[Erro] Data Inválida “"+promoDateText+"”, \n utilize o padrão: DD/MM/AAAA HH:MM"); return $this;}
-	
-	var currentDate=new Date();
-	var days,hours,minutes,seconds="";
-	var daysElem,hoursElem,minutesElem,secondsElem=jQuery("");
-	var daysElemP,hoursElemP,minutesElemP,secondsElemP=jQuery("");
-	var daysElemS,hoursElemS,minutesElemS,secondsElemS=jQuery("");
-	var updateIntreval=0;
-	var k=0;
-	var milliseconds=0;
-	
-	var functions=
-	{
-		removeDateText:function()
-		{
-			if(options.removeDateText)
-				elem.text(elem.text().replace(options.separator+promoDateText,""));
-		},
-		getTimeRemaining:function()
-		{
-			currentDate.setMilliseconds(currentDate.getMilliseconds()+options.updatInterval);
-			var cd=countdown(finalDate,currentDate);
-			days=cd.days;
-			hours=cd.hours;
-			minutes=cd.minutes;
-			seconds=cd.seconds;
-			if(options.outputFormat==2)
-			{
-				hours=24*days+hours;
-				days="";
-			}
-			
-			functions.updateHtml();
-		},
-		toDate:function(dotNetDate)
-		{
-			var monthsList={jan:0,fev:1,mar:2,abr:3,mai:4,jun:5,jul:6,ago:7,set:8,out:9,nov:10,dez:11};
-			var dateArray=dotNetDate
-				.replace(/[a-z]{3}/,function(a){return monthsList[a]||"";})
-				.replace(",","").split(" ");
-			var horary=dateArray[3].split(":");
-			currentDate=new Date(dateArray[2],dateArray[0],dateArray[1],horary[0],horary[1],horary[2]);
-			// Reporting Errors
-			if(isNaN(currentDate.getTime()))
-			{
-				if(_console) console.log("Erro ao processar a data retornada via Ajax \n “"+dotNetDate+"”");
-				currentDate=new Date();
-			}
-		},
-		updateHtml:function()
-		{
-			secondsElem.text(seconds);
-			minutesElem.text(minutes);
-			hoursElem.text(hours);
-			daysElem.text(days);
-			
-			if(seconds==1)
-			{
-				secondsElemP.hide();
-				secondsElemS.show();
-			}
-			else
-			{
-				secondsElemS.hide();
-				secondsElemP.show();
-			}
-			if(minutes==1)
-			{
-				minutesElemP.hide();
-				minutesElemS.show();
-			}
-			else
-			{
-				minutesElemS.hide();
-				minutesElemP.show();
-			}
-			if(hours==1)
-			{
-				hoursElemP.hide();
-				hoursElemS.show();
-			}
-			else
-			{
-				hoursElemS.hide();
-				hoursElemP.show();
-			}
-			if(days==1)
-			{
-				daysElemP.hide();
-				daysElemS.show();
-			}
-			else
-			{
-				daysElemS.hide();
-				daysElemP.show();
-			}
+	if(typeof $.fn.vtexCountdown === "function") return;
 
-			if(k==0)
+	$.fn.vtexCountdown = function(opts){
+	    var defaults = {
+			element:"p[class*=|]", // Elemento em que esta a promoção. Normalmente o sistema gera um "<p>"
+			separator:"|", // Caracter que separa o nome da promoção de sua data limite no título
+			dateSeparator:"/", // Separador de data, usado entre o número de dias, mês e ano
+			hourSeparator:":", // Separador de horas
+			outputFormat:1, // [1] Dias, hrs, min., seg. - [2] hrs, min., seg. // Modelo de impressão do contador
+			// HTML onde será montado o contador
+			htmlFormat : '<span class="days">%days% <span class="vtex-cd_p">dias</span><span class="vtex-cd_s">dias</span> </span><span class="hours">%hours% <span class="vtex-cd_p">horas</span><span class="vtex-cd_s">hora</span> </span><span class="minutes">%minutes% <span class="vtex-cd_p">minutos</span><span class="vtex-cd_s">minuto</span> </span><span class="seconds">%seconds% <span class="vtex-cd_p">segundos</span><span class="vtex-cd_s">segundo</span> </span>',
+			updatInterval:1000, // Intervalo de atualização do contador na tela em milesegundos. 1000 milisegundos = 1 segundo
+			callback:function(){}, // Callback após renderizar o contador.
+			updateCallback:function(){}, // Callback após cada atualização
+			removeDateText:true, // Se "true" irá remover a data do nome da promoção, exibindo ao usuário apenas o título dela
+			displayElement : null // Opção para definir um seletor ou um elemento jQuery no qual será exibido o contador
+		};
+	    var options = jQuery.extend({}, defaults, opts);
+		var $this=$(this);
+		var elem=jQuery(options.element).first();
+		var _console="object"==typeof(console);
+		
+		// Definindo o elemento que receberá o contador
+		var displayElement = options.displayElement ? $this.find(options.displayElement) : $this;
+
+		// Reporting Errors
+		if(elem.length<1){if(_console) console.log("[Erro] Elemento com o nome da promoção não encontrado \n ("+elem.selector+")"); return $this;}
+
+		var promoText=elem.text()||"";
+		// Reporting Errors
+		if(promoText.indexOf(options.separator)<0){if(_console) console.log("[Erro] Separador “"+options.separator+"” não encontrado."); return $this;}
+		
+		// Get Date / Hour
+		var promoDateText=promoText.split(options.separator).pop().trim();
+		var promoTimeStamp=promoDateText.split(" ");
+		var promoDate=(promoTimeStamp[0]||"").split(options.dateSeparator);
+		var promoHour=(promoTimeStamp[1]||"").split(options.hourSeparator);
+		var finalDate=new Date(promoDate[2],(promoDate[1]-1),promoDate[0],promoHour[0],promoHour[1]);
+		// Reporting Errors
+		if(promoDate.length<3 || promoHour.length<2 || isNaN(finalDate.getTime())){if(_console) console.log("[Erro] Data Inválida “"+promoDateText+"”, \n utilize o padrão: DD/MM/AAAA HH:MM"); return $this;}
+		
+		var currentDate = new Date();
+		var days = "", hours = "", minutes = "", seconds = "";
+		var daysElem = $(""), hoursElem = $(""), minutesElem = $(""), secondsElem = $("");
+		var daysElemP = $(""), hoursElemP = $(""), minutesElemP = $(""), secondsElemP = $("");
+		var daysElemS = $(""), hoursElemS = $(""), minutesElemS = $(""), secondsElemS = $("");
+		var updateIntreval = 0;
+		var k = 0;
+		var milliseconds = 0;
+		
+		var functions = {
+			removeDateText:function()
 			{
-				$this.removeClass("vtex-cd_loading");
-				functions.updateCounter();
-				options.callback();
-			}
-			else
-				options.updateCallback();
+				if(options.removeDateText)
+					elem.text(elem.text().replace(options.separator+promoDateText,""));
+			},
+			getTimeRemaining:function()
+			{
+				currentDate.setMilliseconds(currentDate.getMilliseconds()+options.updatInterval);
+				var cd=countdown(currentDate, finalDate, countdown.DAYS|countdown.HOURS|countdown.MINUTES|countdown.SECONDS);
+				days=cd.days;
+				hours=cd.hours;
+				minutes=cd.minutes;
+				seconds=cd.seconds;
+				if(options.outputFormat === 2){
+					hours = 24 * days + hours;
+					days = "";
+				}
 				
-			k++;
-		},
-		formatHtml:function()
-		{
-			var html=options.htmlFormat
-				.replace("%days%",'<span class="vtex-cd_days"></span>')
-				.replace("%hours%",'<span class="vtex-cd_hours"></span>')
-				.replace("%minutes%",'<span class="vtex-cd_minutes"></span>')
-				.replace("%seconds%",'<span class="vtex-cd_seconds"></span>');
-			var jHtml=jQuery(html);
+				functions.updateHtml();
+			},
+			toDate:function(dotNetDate)
+			{
+				var monthsList={jan:0,fev:1,mar:2,abr:3,mai:4,jun:5,jul:6,ago:7,set:8,out:9,nov:10,dez:11};
+				var dateArray=dotNetDate
+					.replace(/[a-z]{3}/,function(a){return monthsList[a]||"";})
+					.replace(",","").split(" ");
+				var horary=dateArray[3].split(":");
+				currentDate=new Date(dateArray[2],dateArray[0],dateArray[1],horary[0],horary[1],horary[2]);
+				// Reporting Errors
+				if(isNaN(currentDate.getTime()))
+				{
+					if(_console) console.log("Erro ao processar a data retornada via Ajax \n “"+dotNetDate+"”");
+					currentDate=new Date();
+				}
+			},
+			updateHtml : function(){
+				secondsElem.text(seconds);
+				minutesElem.text(minutes);
+				hoursElem.text(hours);
+				daysElem.text(days);
+				
+				if(seconds==1){
+					secondsElemP.hide();
+					secondsElemS.show();
+				}
+				else{
+					secondsElemS.hide();
+					secondsElemP.show();
+				}
 
-			daysElem=jHtml.find(".vtex-cd_days");
-			hoursElem=jHtml.find(".vtex-cd_hours");
-			minutesElem=jHtml.find(".vtex-cd_minutes");
-			secondsElem=jHtml.find(".vtex-cd_seconds");
-			daysElemP=daysElem.siblings(".vtex-cd_p");
-			hoursElemP=hoursElem.siblings(".vtex-cd_p");
-			minutesElemP=minutesElem.siblings(".vtex-cd_p");
-			secondsElemP=secondsElem.siblings(".vtex-cd_p");
-			daysElemS=daysElem.siblings(".vtex-cd_s");
-			hoursElemS=hoursElem.siblings(".vtex-cd_s");
-			minutesElemS=minutesElem.siblings(".vtex-cd_s");
-			secondsElemS=secondsElem.siblings(".vtex-cd_s");
-			
-			$this.addClass("vtex-cd_loading").append(jHtml);
-		},
-		updateCounter:function()
-		{
-			updateIntreval=setInterval(functions.getTimeRemaining,options.updatInterval);
-		}
+				if(minutes==1)
+				{
+					minutesElemP.hide();
+					minutesElemS.show();
+				}
+				else
+				{
+					minutesElemS.hide();
+					minutesElemP.show();
+				}
+
+				if(hours==1)
+				{
+					hoursElemP.hide();
+					hoursElemS.show();
+				}
+				else
+				{
+					hoursElemS.hide();
+					hoursElemP.show();
+				}
+
+				if(days==1)
+				{
+					daysElemP.hide();
+					daysElemS.show();
+				}
+				else
+				{
+					daysElemS.hide();
+					daysElemP.show();
+				}
+
+				if(k==0)
+				{
+					$this.removeClass("vtex-cd_loading");
+					functions.updateCounter();
+					options.callback();
+				}
+				else
+					options.updateCallback();
+					
+				k++;
+			},
+			formatHtml:function()
+			{
+				var html=  options.htmlFormat
+					.replace("%days%",'<span class="vtex-cd_days"></span>')
+					.replace("%hours%",'<span class="vtex-cd_hours"></span>')
+					.replace("%minutes%",'<span class="vtex-cd_minutes"></span>')
+					.replace("%seconds%",'<span class="vtex-cd_seconds"></span>');
+				var jHtml = $(html);
+
+				daysElem = jHtml.find(".vtex-cd_days");
+				hoursElem = jHtml.find(".vtex-cd_hours");
+				minutesElem = jHtml.find(".vtex-cd_minutes");
+				secondsElem = jHtml.find(".vtex-cd_seconds");
+				daysElemP = daysElem.siblings(".vtex-cd_p");
+				hoursElemP = hoursElem.siblings(".vtex-cd_p");
+				minutesElemP = minutesElem.siblings(".vtex-cd_p");
+				secondsElemP = secondsElem.siblings(".vtex-cd_p");
+				daysElemS = daysElem.siblings(".vtex-cd_s");
+				hoursElemS = hoursElem.siblings(".vtex-cd_s");
+				minutesElemS = minutesElem.siblings(".vtex-cd_s");
+				secondsElemS = secondsElem.siblings(".vtex-cd_s");
+				
+				displayElement.addClass("vtex-cd_loading").append(jHtml);
+			},
+			updateCounter:function()
+			{
+				updateIntreval=setInterval(functions.getTimeRemaining,options.updatInterval);
+			}
+		};
+		
+		$.ajax({
+			"url":"/no-cache/HoraAtualServidor.aspx",
+			"data":"html",
+			"success":function(data, textStatus, jqXHR)
+			{
+				functions.toDate(data.toLowerCase().trim());
+				functions.getTimeRemaining();
+			},
+			"error":function(jqXHR, textStatus, errorThrown)
+			{
+				if(_console) console.log("Erro na requisição Ajax");
+				functions.getTimeRemaining();
+			}
+		});
+		
+		functions.removeDateText();
+		functions.formatHtml();
 	};
-	
-	$.ajax({
-		"url":"/no-cache/HoraAtualServidor.aspx",
-		"data":"html",
-		"success":function(data, textStatus, jqXHR)
-		{
-			functions.toDate(data.toLowerCase().trim());
-			functions.getTimeRemaining();
-		},
-		"error":function(jqXHR, textStatus, errorThrown)
-		{
-			if(_console) console.log("Erro na requisição Ajax");
-			functions.getTimeRemaining();
-		}
-	});
-	
-	functions.removeDateText();
-	functions.formatHtml();
-};
+})(jQuery);
