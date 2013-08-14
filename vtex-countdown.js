@@ -20,12 +20,12 @@ if("function"!==typeof(String.prototype.trim))String.prototype.trim=function(){r
 			updatInterval:1000, // Intervalo de atualização do contador na tela em milesegundos. 1000 milisegundos = 1 segundo
 			callback:function(){}, // Callback após renderizar o contador.
 			updateCallback:function(){}, // Callback após cada atualização
-			removeDateText:true, // Se "true" irá remover a data do nome da promoção, exibindo ao usuário apenas o título dela
+			removeDateText : true, // Se "true" irá remover a data do nome da promoção, exibindo ao usuário apenas o título dela
 			displayElement : null // Opção para definir um seletor ou um elemento jQuery no qual será exibido o contador
 		};
 	    var options = jQuery.extend({}, defaults, opts);
-		var $this=$(this);
-		var elem=jQuery(options.element).first();
+		var $this = $(this);
+		var elem = $this.find(options.element).first();
 		var _console="object"==typeof(console);
 		
 		// Definindo o elemento que receberá o contador
@@ -60,7 +60,7 @@ if("function"!==typeof(String.prototype.trim))String.prototype.trim=function(){r
 			removeDateText:function()
 			{
 				if(options.removeDateText)
-					elem.text(elem.text().replace(options.separator+promoDateText,""));
+					elem.text(elem.text().replace(options.separator, "").replace(promoDateText, ""));
 			},
 			getTimeRemaining:function()
 			{
